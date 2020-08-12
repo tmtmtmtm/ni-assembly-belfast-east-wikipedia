@@ -18,7 +18,7 @@ class Candidates < WikipediaCandidatesPage
   decorator WikidataIdsDecorator::Links
 
   def wanted_tables
-    noko.xpath('.//table[.//th[contains(., "Candidate")]]')
+    noko.xpath('.//table[.//tr[2]//th[contains(., "Candidate")]]')
   end
 end
 
