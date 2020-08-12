@@ -36,6 +36,10 @@ class Candidate < WikipediaCandidateRow
     noko.xpath('ancestor::table//tr[1]//a').map(&:text).map(&:tidy).first
   end
 
+  field :votes do
+    tds.map(&:text).map(&:tidy).reject(&:empty?).last.gsub(',', '')
+  end
+
   # https://stackoverflow.com/a/6630486
   field :ranking do
     (tds[0].xpath('count(ancestor::tr) + count(ancestor::tr[1]/preceding-sibling::tr)') - 2).to_i
